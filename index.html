@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Support Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #8b5cf6;
+            --background-color: #f8fafc;
+            --card-background: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .app {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--card-background);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Section */
+        .search-section {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .search-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quick-searches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .quick-search-chip {
+            background-color: #e0e7ff;
+            color: var(--primary-color);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-search-chip:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--card-background);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .category-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Results Section */
+        .results-section {
+            margin-bottom: 3rem;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Feed Items */
+        .feed-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feed-item {
+            background: var(--card-background);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .feed-item:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #e0e7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .source-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .timestamp {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .difficulty-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .difficulty-beginner {
+            background-color: var(--success-color);
+        }
+
+        .difficulty-intermediate {
+            background-color: var(--warning-color);
+        }
+
+        .difficulty-advanced {
+            background-color: var(--danger-color);
+        }
+
+        .problem-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .problem-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .quick-steps {
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .quick-steps ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-steps li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .feed-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: #e0e7ff;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .feed-footer {
+            display: flex;
+            gap: 1rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .action-button {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .action-button:hover {
+            background-color: #f8fafc;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .action-button.liked {
+            background-color: #fef2f2;
+            color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .action-button.bookmarked {
+            background-color: #f0f9ff;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-background);
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app {
+                padding: 0 15px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .search-button {
+                width: 100%;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .feed-footer {
+                flex-wrap: wrap;
+            }
+            
+            .action-button {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-searches {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🔧</div>
+                    <h1>Tech Support Hub</h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="#"><i class="fas fa-home"></i> Home</a>
+                    <a href="#"><i class="fas fa-bookmark"></i> Bookmarks</a>
+                    <a href="#"><i class="fas fa-history"></i> History</a>
+                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Find Tech Solutions Instantly</h2>
+            <p>Search for fixes to common IT issues including networking, printers, Active Directory, and more.</p>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <form id="searchForm" class="search-form">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search for tech issues (e.g., 'printer offline', 'WiFi not connecting')" 
+                        autofocus
+                    >
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </form>
+                <div class="quick-searches">
+                    <span>Quick searches: </span>
+                    <button class="quick-search-chip" data-search="WiFi not connecting">WiFi not connecting</button>
+                    <button class="quick-search-chip" data-search="Printer offline">Printer offline</button>
+                    <button class="quick-search-chip" data-search="Active Directory password reset">AD password reset</button>
+                    <button class="quick-search-chip" data-search="DNS server not responding">DNS issues</button>
+                    <button class="quick-search-chip" data-search="Blue Screen of Death">Blue Screen</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <div class="results-header">
+                <h2 class="section-title" id="resultsTitle">Latest Solutions</h2>
+                <div class="results-count" id="resultsCount">Loading solutions...</div>
+            </div>
+            
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Searching for solutions...</p>
+            </div>
+            
+            <div class="feed-list" id="feedList">
+                <!-- Feed items will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Tech Support Hub &copy; 2023 - Your go-to resource for IT troubleshooting</p>
+            <p>Built with HTML, CSS, and JavaScript</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mock data for the application
+        const mockSolutions = [
+            {
+                id: '1',
+                title: 'How to Fix Printer Offline Status on Windows',
+                description: 'Step-by-step guide to troubleshoot and fix printer offline issues on Windows 10/11. This covers both network and USB printers.',
+                source: 'stackoverflow',
+                sourceName: 'Stack Overflow',
+                timeAgo: '2 hours ago',
+                difficulty: 'beginner',
+                tags: ['printer', 'windows', 'offline', 'troubleshooting'],
+                likes: 42,
+                comments: 8,
+                category: 'printers',
+                steps: [
+                    'Check physical connections (USB/Ethernet/WiFi)',
+                    'Restart the printer and computer',
+                    'Run Windows Printer Troubleshooter',
+                    'Update printer drivers from manufacturer website',
+                    'Clear print queue and restart spooler service'
+                ]
+            },
+            {
+                id: '2',
+                title: 'Active Directory Password Reset Guide',
+                description: 'Step-by-step instructions for resetting AD passwords using PowerShell and GUI tools for domain administrators.',
+                source: 'official',
+                sourceName: 'Official Docs',
+                timeAgo: '5 hours ago',
+                difficulty: 'intermediate',
+                tags: ['active-directory', 'windows-server', 'powershell', 'security'],
+                likes: 89,
+                comments: 15,
+                category: 'active-directory',
+                steps: [
+                    'Open Active Directory Users and Computers',
+                    'Locate the user account needing password reset',
+                    'Right-click and select Reset Password',
+                    'Enter new password and confirm',
+                    'Check "User must change password at next logon" if needed'
+                ]
+            },
+            {
+                id: '3',
+                title: 'Cisco Router Basic Configuration',
+                description: 'Essential commands to configure a Cisco router for basic network connectivity including interfaces, routing, and security.',
+                source: 'community',
+                sourceName: 'Tech Community',
+                timeAgo: '1 day ago',
+                difficulty: 'advanced',
+                tags: ['cisco', 'router', 'networking', 'configuration'],
+                likes: 156,
+                comments: 23,
+                category: 'networking',
+                steps: [
+                    'Connect to router via console cable',
+                    'Enter privileged EXEC mode (enable)',
+                    'Enter global configuration mode (configure terminal)',
+                    'Configure hostname and interfaces',
+                    'Set up routing protocols and save configuration'
+                ]
+            },
+            {
+                id: '4',
+                title: 'WiFi Not Connecting - Troubleshooting Guide',
+                description: 'Comprehensive guide to fix WiFi connectivity issues on Windows, macOS, and mobile devices.',
+                source: 'reddit',
+                sourceName: 'Reddit Tech Support',
+                timeAgo: '3 hours ago',
+                difficulty: 'beginner',
+                tags: ['wifi', 'networking', 'troubleshooting', 'connectivity'],
+                likes: 67,
+                comments: 12,
+                category: 'networking',
+                steps: [
+                    'Restart your router and modem',
+                    'Forget the WiFi network and reconnect',
+                    'Update wireless adapter drivers',
+                    'Check for IP address conflicts',
+                    'Change WiFi channel on router settings'
+                ]
+            },
+            {
+                id: '5',
+                title: 'Fixing Blue Screen of Death (BSOD) Errors',
+                description: 'How to diagnose and fix common Blue Screen errors in Windows including memory dumps and driver issues.',
+                source: 'stackoverflow',
+                sourceName: 'Stack Overflow',
+                timeAgo: '1 day ago',
+                difficulty: 'intermediate',
+                tags: ['windows', 'bsod', 'troubleshooting', 'drivers'],
+                likes: 124,
+                comments: 31,
+                category: 'windows',
+                steps: [
+                    'Note the error code displayed on blue screen',
+                    'Boot into Safe Mode',
+                    'Check Windows Event Viewer for details',
+                    'Run Windows Memory Diagnostic tool',
+                    'Update or roll back recent driver changes'
+                ]
+            },
+            {
+                id: '6',
+                title: 'Setting Up Network Switch Configuration',
+                description: 'Basic configuration for network switches including VLAN setup, port security, and management.',
+                source: 'official',
+                sourceName: 'Official Docs',
+                timeAgo: '2 days ago',
+                difficulty: 'advanced',
+                tags: ['switch', 'networking', 'vlan', 'configuration'],
+                likes: 45,
+                comments: 9,
+                category: 'networking',
+                steps: [
+                    'Connect to switch via console or SSH',
+                    'Configure management IP address',
+                    'Set up VLANs for network segmentation',
+                    'Configure trunk and access ports',
+                    'Enable port security features'
+                ]
+            },
+            {
+                id: '7',
+                title: 'macOS Printer Installation Guide',
+                description: 'How to install and configure printers on macOS including network and USB printers.',
+                source: 'community',
+                sourceName: 'Tech Community',
+                timeAgo: '4 hours ago',
+                difficulty: 'beginner',
+                tags: ['macos', 'printer', 'installation', 'apple'],
+                likes: 34,
+                comments: 5,
+                category: 'mac',
+                steps: [
+                    'Open System Settings > Printers & Scanners',
+                    'Click the + button to add a printer',
+                    'Select your printer from the list',
+                    'Install printer drivers if prompted',
+                    'Print a test page to verify installation'
+                ]
+            },
+            {
+                id: '8',
+                title: 'Linux Network Configuration via Command Line',
+                description: 'Configure network interfaces, DNS, and routing on Linux systems using terminal commands.',
+                source: 'official',
+                sourceName: 'Official Docs',
+                timeAgo: '2 days ago',
+                difficulty: 'intermediate',
+                tags: ['linux', 'networking', 'command-line', 'configuration'],
+                likes: 78,
+                comments: 18,
+                category: 'linux',
+                steps: [
+                    'Use ip addr to check current network configuration',
+                    'Edit /etc/network/interfaces file',
+                    'Configure DNS in /etc/resolv.conf',
+                    'Restart networking service',
+                    'Test connectivity with ping and nslookup'
+                ]
+            }
+        ];
+
+        const categories = [
+            { id: 'all', name: 'All Issues', icon: '🔍', color: '#3b82f6' },
+            { id: 'networking', name: 'Networking', icon: '🌐', color: '#2563eb' },
+            { id: 'printers', name: 'Printers', icon: '🖨️', color: '#8b5cf6' },
+            { id: 'active-directory', name: 'Active Directory', icon: '📁', color: '#10b981' },
+            { id: 'windows', name: 'Windows OS', icon: '🪟', color: '#0ea5e9' },
+            { id: 'mac', name: 'macOS', icon: '🍎', color: '#6366f1' },
+            { id: 'linux', name: 'Linux', icon: '🐧', color: '#f59e0b' },
+            { id: 'hardware', name: 'Hardware', icon: '💻', color: '#ef4444' }
+        ];
+
+        // DOM Elements
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const categoriesGrid = document.getElementById('categoriesGrid');
+        const feedList = document.getElementById('feedList');
+        const loadingElement = document.getElementById('loading');
+        const resultsTitle = document.getElementById('resultsTitle');
+        const resultsCount = document.getElementById('resultsCount');
+        const quickSearchChips = document.querySelectorAll('.quick-search-chip');
+
+        // State
+        let currentCategory = 'all';
+        let bookmarkedSolutions = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        let likedSolutions = JSON.parse(localStorage.getItem('likes') || '{}');
+
+        // Initialize the application
+        function init() {
+            renderCategories();
+            renderSolutions(mockSolutions);
+            setupEventListeners();
+            hideLoading();
+        }
+
+        // Render categories
+        function renderCategories() {
+            categoriesGrid.innerHTML = '';
+            categories.forEach(category => {
+                const categoryElement = document.createElement('div');
+                categoryElement.className = 'category-card';
+                categoryElement.style.borderColor = currentCategory === category.id ? category.color : '';
+                categoryElement.innerHTML = `
+                    <div class="category-icon" style="color: ${category.color}">${category.icon}</div>
+                    <h3>${category.name}</h3>
+                    <p>Click to view ${category.name.toLowerCase()} solutions</p>
+                `;
+                categoryElement.addEventListener('click', () => {
+                    currentCategory = category.id;
+                    filterSolutionsByCategory();
+                    renderCategories();
+                });
+                categoriesGrid.appendChild(categoryElement);
+            });
+        }
+
+        // Render solutions
+        function renderSolutions(solutions) {
+            feedList.innerHTML = '';
+            
+            if (solutions.length === 0) {
+                feedList.innerHTML = `
+                    <div class="feed-item" style="text-align: center; padding: 3rem;">
+                        <h3>No solutions found</h3>
+                        <p>Try a different search term or browse by category</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            solutions.forEach(solution => {
+                const isBookmarked = bookmarkedSolutions.includes(solution.id);
+                const isLiked = likedSolutions[solution.id] || false;
+                const likeCount = isLiked ? solution.likes + 1 : solution.likes;
+                
+                const feedItem = document.createElement('div');
+                feedItem.className = 'feed-item';
+                feedItem.innerHTML = `
+                    <div class="feed-header">
+                        <div class="user-info">
+                            <div class="avatar">${getSourceIcon(solution.source)}</div>
+                            <div>
+                                <h4 class="source-name">${solution.sourceName}</h4>
+                                <span class="timestamp">${solution.timeAgo}</span>
+                            </div>
+                        </div>
+                        <div class="difficulty-badge difficulty-${solution.difficulty}">
+                            ${solution.difficulty}
+                        </div>
+                    </div>
+                    
+                    <h3 class="problem-title">${solution.title}</h3>
+                    <p class="problem-description">${solution.description}</p>
+                    
+                    ${solution.steps ? `
+                    <div class="quick-steps">
+                        <strong>Quick Steps:</strong>
+                        <ol>
+                            ${solution.steps.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="feed-tags">
+                        ${solution.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div class="feed-footer">
+                        <button class="action-button ${isLiked ? 'liked' : ''}" data-action="like" data-id="${solution.id}">
+                            <i class="fas fa-thumbs-up"></i> ${likeCount}
+                        </button>
+                        <button class="action-button" data-action="comment" data-id="${solution.id}">
+                            <i class="fas fa-comment"></i> ${solution.comments}
+                        </button>
+                        <button class="action-button ${isBookmarked ? 'bookmarked' : ''}" data-action="bookmark" data-id="${solution.id}">
+                            <i class="fas ${isBookmarked ? 'fa-bookmark' : 'fa-bookmark'}"></i> ${isBookmarked ? 'Bookmarked' : 'Bookmark'}
+                        </button>
+                        <button class="action-button" data-action="share" data-id="${solution.id}">
+                            <i class="fas fa-share"></i> Share
+                        </button>
+                    </div>
+                `;
+                
+                feedList.appendChild(feedItem);
+            });
+            
+            // Add event listeners to action buttons
+            feedList.querySelectorAll('[data-action]').forEach(button => {
+                button.addEventListener('click', handleActionButtonClick);
+            });
+            
+            updateResultsCount(solutions.length);
+        }
+
+        // Filter solutions by category
+        function filterSolutionsByCategory() {
+            showLoading();
+            
+            setTimeout(() => {
+                let filteredSolutions;
+                if (currentCategory === 'all') {
+                    filteredSolutions = mockSolutions;
+                    resultsTitle.textContent = 'Latest Solutions';
+                } else {
+                    filteredSolutions = mockSolutions.filter(
+                        solution => solution.category === currentCategory
+                    );
+                    const category = categories.find(c => c.id === currentCategory);
+                    resultsTitle.textContent = `${category.name} Solutions`;
+                }
+                
+                renderSolutions(filteredSolutions);
+                hideLoading();
+            }, 500);
+        }
+
+        // Search solutions
+        function searchSolutions(query) {
+            showLoading();
+            
+            setTimeout(() => {
+                const normalizedQuery = query.toLowerCase().trim();
+                let searchResults;
+                
+                if (currentCategory === 'all') {
+                    searchResults = mockSolutions.filter(solution => 
+                        solution.title.toLowerCase().includes(normalizedQuery) ||
+                        solution.description.toLowerCase().includes(normalizedQuery) ||
+                        solution.tags.some(tag => tag.toLowerCase().includes(normalizedQuery))
+                    );
+                } else {
+                    searchResults = mockSolutions.filter(solution => 
+                        solution.category === currentCategory &&
+                        (solution.title.toLowerCase().includes(normalizedQuery) ||
+                         solution.description.toLowerCase().includes(normalizedQuery) ||
+                         solution.tags.some(tag => tag.toLowerCase().includes(normalizedQuery)))
+                    );
+                }
+                
+                renderSolutions(searchResults);
+                resultsTitle.textContent = `Search Results for "${query}"`;
+                hideLoading();
+            }, 800);
+        }
+
+        // Handle action button clicks
+        function handleActionButtonClick(event) {
+            const button = event.currentTarget;
+            const action = button.getAttribute('data-action');
+            const solutionId = button.getAttribute('data-id');
+            const solution = mockSolutions.find(s => s.id === solutionId);
+            
+            switch(action) {
+                case 'like':
+                    toggleLike(solutionId);
+                    break;
+                case 'bookmark':
+                    toggleBookmark(solutionId);
+                    break;
+                case 'share':
+                    shareSolution(solution);
+                    break;
+                case 'comment':
+                    showComments(solution);
+                    break;
+            }
+        }
+
+        // Toggle like
+        function toggleLike(solutionId) {
+            likedSolutions[solutionId] = !likedSolutions[solutionId];
+            localStorage.setItem('likes', JSON.stringify(likedSolutions));
+            filterSolutionsByCategory();
+        }
+
+        // Toggle bookmark
+        function toggleBookmark(solutionId) {
+            const index = bookmarkedSolutions.indexOf(solutionId);
+            if (index === -1) {
+                bookmarkedSolutions.push(solutionId);
+            } else {
+                bookmarkedSolutions.splice(index, 1);
+            }
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarkedSolutions));
+            filterSolutionsByCategory();
+        }
+
+        // Share solution
+        function shareSolution(solution) {
+            if (navigator.share) {
+                navigator.share({
+                    title: solution.title,
+                    text: solution.description,
+                    url: window.location.href,
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                navigator.clipboard.writeText(solution.title + '\n\n' + solution.description);
+                alert('Solution details copied to clipboard!');
+            }
+        }
+
+        // Show comments (mock function)
+        function showComments(solution) {
+            alert(`Comments for: ${solution.title}\n\nThis is a mock comment section. In a full implementation, this would show user comments and discussions.`);
+        }
+
+        // Get source icon
+        function getSourceIcon(source) {
+            const icons = {
+                'stackoverflow': '🔧',
+                'reddit': '👥',
+                'official': '📘',
+                'community': '💬'
+            };
+            return icons[source] || '🔍';
+        }
+
+        // Update results count
+        function updateResultsCount(count) {
+            resultsCount.textContent = `${count} solution${count !== 1 ? 's' : ''} found`;
+        }
+
+        // Show loading state
+        function showLoading() {
+            loadingElement.style.display = 'block';
+            feedList.style.display = 'none';
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            loadingElement.style.display = 'none';
+            feedList.style.display = 'flex';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search form submission
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = searchInput.value.trim();
+                if (query) {
+                    searchSolutions(query);
+                }
+            });
+
+            // Quick search chips
+            quickSearchChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    const searchQuery = this.getAttribute('data-search');
+                    searchInput.value = searchQuery;
+                    searchSolutions(searchQuery);
+                });
+            });
+
+            // Enter key on search input
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        searchSolutions(query);
+                    }
+                }
+            });
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
