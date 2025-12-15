@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Support Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="src/css/variables.css">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="src/css/responsive.css">
+    <link rel="icon" href="public/assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🔧</div>
+                    <h1>Tech Support Hub</h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="#" id="homeLink"><i class="fas fa-home"></i> Home</a>
+                    <a href="#" id="bookmarksLink"><i class="fas fa-bookmark"></i> Bookmarks</a>
+                    <a href="#" id="historyLink"><i class="fas fa-history"></i> History</a>
+                    <a href="#" id="settingsLink"><i class="fas fa-cog"></i> Settings</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="mainContent">
+            <!-- Content will be loaded dynamically -->
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>Tech Support Hub &copy; <span id="currentYear"></span> - Your go-to resource for IT troubleshooting</p>
+            <p>Built with HTML, CSS, and JavaScript</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="src/js/config/constants.js"></script>
+    <script type="module" src="src/js/data/utils.js"></script>
+    <script type="module" src="src/js/data/categories.js"></script>
+    <script type="module" src="src/js/data/solutions.js"></script>
+    <script type="module" src="src/js/storage/bookmarks.js"></script>
+    <script type="module" src="src/js/storage/likes.js"></script>
+    <script type="module" src="src/js/components/ui.js"></script>
+    <script type="module" src="src/js/components/search.js"></script>
+    <script type="module" src="src/js/components/categories.js"></script>
+    <script type="module" src="src/js/components/feed.js"></script>
+    <script type="module" src="src/js/app.js"></script>
+</body>
+</html>
